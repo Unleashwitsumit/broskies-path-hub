@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
+import { Header } from '@/components/Header';
 import { ValueCard } from '@/components/ValueCard';
 import { MentorCard } from '@/components/MentorCard';
 import { InternshipCard } from '@/components/InternshipCard';
+import { VideoTestimonial } from '@/components/VideoTestimonial';
 import { 
   Rocket, 
   Users, 
@@ -68,28 +70,22 @@ const Index = () => {
 
   const mentors = [
     {
-      name: "Shafqat Ahmed",
-      role: "Senior Full Stack Developer",
-      expertise: "Web Development Mentor",
-      experience: "5+ years at Microsoft, specialized in React & Node.js. Has mentored 200+ students into successful careers."
+      name: "Shafqat",
+      role: "Web Dev Mentor",
+      expertise: "Full Stack Development",
+      quote: "I guide students to build real-world projects that companies actually look for."
     },
     {
-      name: "Priya Sharma",
-      role: "Data Science Lead",
-      expertise: "Python & AI/ML Mentor",
-      experience: "7+ years at Google, expert in machine learning algorithms. Published researcher with 15+ papers."
+      name: "Riya",
+      role: "AI/ML Mentor", 
+      expertise: "Python & Machine Learning",
+      quote: "AI is not just theory — I show you how to use it in real work."
     },
     {
-      name: "Rajesh Kumar",
-      role: "Backend Architect",
-      expertise: "Java & System Design Mentor",
-      experience: "8+ years at Amazon, built scalable systems handling millions of users. Senior technical interviewer."
-    },
-    {
-      name: "Sneha Gupta",
-      role: "Database Specialist",
-      expertise: "SQL & Database Mentor",
-      experience: "6+ years at Oracle, database optimization expert. Helped companies reduce query time by 90%."
+      name: "Arjun",
+      role: "Python Mentor",
+      expertise: "Python & Backend Development", 
+      quote: "My goal is to make coding fun and confidence-boosting for students."
     }
   ];
 
@@ -125,18 +121,21 @@ const Index = () => {
     {
       name: "Arjun Patel",
       college: "IIT Delhi",
+      course: "Python",
       rating: 5,
-      text: "This internship helped me land freelance work within 1 month! The mentors are amazing and the projects are industry-relevant."
+      text: "This internship helped me build my first portfolio project and get freelance clients!"
     },
     {
       name: "Kavya Reddy",
-      college: "BITS Pilani",  
+      college: "BITS Pilani",
+      course: "Web Development", 
       rating: 5,
       text: "Best decision ever! Got placed in a startup before my final year. The hands-on learning approach is incredible."
     },
     {
       name: "Rohit Singh",
       college: "NIT Trichy",
+      course: "AI/ML",
       rating: 5,
       text: "From zero coding knowledge to building full-stack apps in 3 months. BroskiesHub changed my career trajectory!"
     }
@@ -144,9 +143,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
+      
       {/* Hero Section */}
       <section 
-        className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden"
+        id="home"
+        className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden pt-16"
         style={{
           backgroundImage: `linear-gradient(135deg, rgba(10, 31, 68, 0.9), rgba(10, 31, 68, 0.7)), url(${heroImage})`,
           backgroundSize: 'cover',
@@ -189,7 +191,7 @@ const Index = () => {
       </section>
 
       {/* Social Proof Section */}
-      <section className="py-20 bg-muted/30">
+      <section id="testimonials" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
@@ -206,25 +208,22 @@ const Index = () => {
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, idx) => (
-              <div key={idx} className="bg-card border border-border rounded-xl p-6 shadow-brand-sm animate-on-scroll">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-warning text-warning" />
-                  ))}
-                </div>
-                <p className="text-foreground mb-4 italic">"{testimonial.text}"</p>
-                <div>
-                  <p className="font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.college}</p>
-                </div>
-              </div>
+              <VideoTestimonial
+                key={idx}
+                name={testimonial.name}
+                college={testimonial.college}
+                course={testimonial.course}
+                rating={testimonial.rating}
+                text={testimonial.text}
+                className="animate-on-scroll"
+              />
             ))}
           </div>
         </div>
       </section>
 
       {/* Value Proposition Section */}
-      <section className="py-20">
+      <section id="about" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
@@ -246,26 +245,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Mentors Section */}
+      {/* Mentor Voices Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
-              Learn from Industry Experts
+              What Our Mentors Say
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Our mentors are currently working in top tech companies and have years of real-world experience.
+              Hear from our industry experts who are passionate about empowering students.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {mentors.map((mentor, idx) => (
               <MentorCard
                 key={idx}
                 name={mentor.name}
                 role={mentor.role}
                 expertise={mentor.expertise}
-                experience={mentor.experience}
+                quote={mentor.quote}
                 className="animate-on-scroll"
               />
             ))}

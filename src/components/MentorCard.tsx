@@ -5,7 +5,7 @@ interface MentorCardProps {
   name: string;
   role: string;
   expertise: string;
-  experience: string;
+  quote: string;
   avatar?: string;
   className?: string;
 }
@@ -14,7 +14,7 @@ export const MentorCard: React.FC<MentorCardProps> = ({
   name,
   role,
   expertise,
-  experience,
+  quote,
   avatar,
   className = ""
 }) => {
@@ -43,8 +43,8 @@ export const MentorCard: React.FC<MentorCardProps> = ({
         </div>
         
         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4 p-4 bg-accent/30 rounded-lg">
-          <p className="text-sm text-foreground font-medium">
-            {experience}
+          <p className="text-sm text-foreground font-medium italic">
+            "{quote}"
           </p>
         </div>
       </div>
